@@ -1,5 +1,5 @@
-streamlit==1.31.0
-tensorflow==2.15.0
-pillow==10.2.0
-pandas==2.2.0
-numpy==1.26.3
+streamlit==1.41.0
+tensorflow==2.20.0
+pillow==11.1.0
+pandas==2.2.3
+numpy==2.2.2
