@@ -91,7 +91,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ===== CLASS NAMES & DISEASE INFO =====
+# ===== CLASS NAMES =====
 CLASS_NAMES = [
     'Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy',
     'Blueberry___healthy', 'Cherry_(including_sour)___Powdery_mildew', 
@@ -109,10 +109,160 @@ CLASS_NAMES = [
     'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 'Tomato___Tomato_mosaic_virus', 'Tomato___healthy'
 ]
 
+# ===== COMPLETE DISEASE INFORMATION DATABASE =====
 DISEASE_INFO = {
-    'Apple___Apple_scab': {'symptoms': 'Dark spots on leaves and fruit', 'treatment': 'Apply fungicide, remove infected leaves'},
-    'Tomato___Late_blight': {'symptoms': 'Water-soaked lesions, white mold', 'treatment': 'Remove infected plants, apply copper fungicide'},
-    'Corn_(maize)___Common_rust_': {'symptoms': 'Orange pustules on leaves', 'treatment': 'Plant resistant varieties, apply fungicide'},
+    'Apple___Apple_scab': {
+        'symptoms': 'Dark olive-green or brown spots on leaves and fruit',
+        'treatment': 'Apply fungicide sprays, remove infected leaves, improve air circulation'
+    },
+    'Apple___Black_rot': {
+        'symptoms': 'Purple spots on leaves, brown rot on fruit',
+        'treatment': 'Prune infected branches, apply fungicide, remove mummified fruit'
+    },
+    'Apple___Cedar_apple_rust': {
+        'symptoms': 'Yellow-orange spots on upper leaf surface',
+        'treatment': 'Remove nearby cedar trees, apply protective fungicides in spring'
+    },
+    'Apple___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Maintain regular care: water, fertilize, monitor for pests'
+    },
+    'Blueberry___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Maintain acidic soil, adequate watering, prune old branches'
+    },
+    'Cherry_(including_sour)___Powdery_mildew': {
+        'symptoms': 'White powdery coating on leaves and shoots',
+        'treatment': 'Apply sulfur-based fungicides, improve air circulation, prune dense growth'
+    },
+    'Cherry_(including_sour)___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Regular pruning, proper fertilization, monitor for pests'
+    },
+    'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': {
+        'symptoms': 'Gray rectangular lesions on leaves between veins',
+        'treatment': 'Crop rotation, plant resistant varieties, apply fungicide if severe'
+    },
+    'Corn_(maize)___Common_rust_': {
+        'symptoms': 'Orange-brown pustules on both leaf surfaces',
+        'treatment': 'Plant resistant hybrids, apply fungicide for susceptible varieties'
+    },
+    'Corn_(maize)___Northern_Leaf_Blight': {
+        'symptoms': 'Long gray-green cigar-shaped lesions on leaves',
+        'treatment': 'Use resistant hybrids, practice crop rotation, timely fungicide application'
+    },
+    'Corn_(maize)___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Adequate nitrogen fertilization, proper spacing, weed control'
+    },
+    'Grape___Black_rot': {
+        'symptoms': 'Circular brown spots on leaves, shriveled mummified fruit',
+        'treatment': 'Remove infected fruit, apply fungicide from bloom to harvest'
+    },
+    'Grape___Esca_(Black_Measles)': {
+        'symptoms': 'Tiger-stripe leaf pattern, dark streaking in wood',
+        'treatment': 'No cure available, prune infected vines, remove dead wood'
+    },
+    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': {
+        'symptoms': 'Angular brown spots with yellow halos on leaves',
+        'treatment': 'Improve air circulation, apply copper fungicides, remove infected leaves'
+    },
+    'Grape___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Regular pruning, adequate water and nutrients, pest monitoring'
+    },
+    'Orange___Haunglongbing_(Citrus_greening)': {
+        'symptoms': 'Yellow mottled leaves, lopsided bitter fruit, tree decline',
+        'treatment': 'No cure; remove infected trees, control psyllid vectors, plant disease-free stock'
+    },
+    'Peach___Bacterial_spot': {
+        'symptoms': 'Small dark spots on leaves and fruit, fruit cracking',
+        'treatment': 'Apply copper sprays, plant resistant varieties, prune for air flow'
+    },
+    'Peach___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Annual pruning, balanced fertilization, thin fruit for quality'
+    },
+    'Pepper,_bell___Bacterial_spot': {
+        'symptoms': 'Dark raised spots on leaves and fruit',
+        'treatment': 'Use disease-free seeds, apply copper bactericides, avoid overhead watering'
+    },
+    'Pepper,_bell___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Consistent watering, calcium supplementation, mulch to retain moisture'
+    },
+    'Potato___Early_blight': {
+        'symptoms': 'Concentric ring pattern (target spots) on lower leaves',
+        'treatment': 'Apply fungicide at first symptoms, remove infected foliage, rotate crops'
+    },
+    'Potato___Late_blight': {
+        'symptoms': 'Water-soaked lesions, white fungal growth, rapid plant collapse',
+        'treatment': 'Apply fungicide preventatively, destroy infected plants, avoid overhead irrigation'
+    },
+    'Potato___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Plant certified seed, hill soil around stems, harvest when mature'
+    },
+    'Raspberry___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Annual pruning of old canes, adequate spacing, weed control'
+    },
+    'Soybean___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Crop rotation, adequate fertilization, monitor for pests'
+    },
+    'Squash___Powdery_mildew': {
+        'symptoms': 'White powdery fungal coating on leaves',
+        'treatment': 'Apply sulfur or potassium bicarbonate, improve air circulation, water at soil level'
+    },
+    'Strawberry___Leaf_scorch': {
+        'symptoms': 'Purple to reddish-brown spots with gray centers on leaves',
+        'treatment': 'Remove infected leaves, apply fungicide, avoid overhead watering'
+    },
+    'Strawberry___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Renovate beds after harvest, adequate water, remove runners'
+    },
+    'Tomato___Bacterial_spot': {
+        'symptoms': 'Small dark greasy spots on leaves and fruit',
+        'treatment': 'Use disease-free transplants, apply copper sprays, avoid wet foliage'
+    },
+    'Tomato___Early_blight': {
+        'symptoms': 'Brown concentric ring spots on lower leaves',
+        'treatment': 'Apply fungicide, mulch to prevent soil splash, remove lower leaves'
+    },
+    'Tomato___Late_blight': {
+        'symptoms': 'Large irregular brown lesions, white mold, rapid plant death',
+        'treatment': 'Apply fungicide immediately, destroy infected plants, avoid overhead watering'
+    },
+    'Tomato___Leaf_Mold': {
+        'symptoms': 'Yellow spots on upper leaf, olive-green mold below',
+        'treatment': 'Improve greenhouse ventilation, lower humidity, apply fungicide'
+    },
+    'Tomato___Septoria_leaf_spot': {
+        'symptoms': 'Small circular spots with dark borders and gray centers',
+        'treatment': 'Remove infected leaves, apply fungicide, mulch to prevent splash'
+    },
+    'Tomato___Spider_mites Two-spotted_spider_mite': {
+        'symptoms': 'Yellow stippling on leaves, fine webbing, leaf bronzing',
+        'treatment': 'Spray with water to dislodge mites, apply miticide, introduce predatory mites'
+    },
+    'Tomato___Target_Spot': {
+        'symptoms': 'Brown spots with concentric rings on leaves and stems',
+        'treatment': 'Apply fungicide, remove infected debris, practice crop rotation'
+    },
+    'Tomato___Tomato_Yellow_Leaf_Curl_Virus': {
+        'symptoms': 'Upward leaf curling, yellowing, stunted growth',
+        'treatment': 'Control whitefly vectors, remove infected plants, use reflective mulch'
+    },
+    'Tomato___Tomato_mosaic_virus': {
+        'symptoms': 'Mottled light and dark green leaf pattern, stunted growth',
+        'treatment': 'No cure; prevent by sanitizing tools, using resistant varieties, controlling aphids'
+    },
+    'Tomato___healthy': {
+        'symptoms': 'No visible disease symptoms',
+        'treatment': 'Consistent watering, staking for support, regular fertilization'
+    }
 }
 
 CONFIDENCE_THRESHOLD = 30
@@ -236,18 +386,18 @@ def main():
                     
                     st.progress(float(conf / 100))
                     
-                    if CLASS_NAMES[idx] in DISEASE_INFO:
-                        with st.expander("📋 Disease Information"):
-                            info = DISEASE_INFO[CLASS_NAMES[idx]]
-                            st.write(f"**Symptoms:** {info['symptoms']}")
-                            st.write(f"**Treatment:** {info['treatment']}")
+                    # Disease information (now works for all 38 classes)
+                    with st.expander("📋 Disease Information"):
+                        info = DISEASE_INFO[CLASS_NAMES[idx]]
+                        st.write(f"**Symptoms:** {info['symptoms']}")
+                        st.write(f"**Treatment:** {info['treatment']}")
                     
                     with st.expander("📊 Full Probability Distribution"):
                         top5 = np.argsort(preds[0])[-5:][::-1]
                         for i in top5:
                             st.write(f"**{format_name(CLASS_NAMES[i])}**: {preds[0][i]*100:.1f}%")
                     
-                    with st.expander("🔍 Compare with EfficientNet vs ResNet"):
+                    with st.expander("🔍 Compare EfficientNet vs ResNet"):
                         pred_eff = m_eff.predict(proc_img, verbose=0)
                         pred_res = m_res.predict(proc_img, verbose=0)
                         
