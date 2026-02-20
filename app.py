@@ -109,15 +109,13 @@ CLASS_NAMES = [
     'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 'Tomato___Tomato_mosaic_virus', 'Tomato___healthy'
 ]
 
-# Disease information database
 DISEASE_INFO = {
     'Apple___Apple_scab': {'symptoms': 'Dark spots on leaves and fruit', 'treatment': 'Apply fungicide, remove infected leaves'},
     'Tomato___Late_blight': {'symptoms': 'Water-soaked lesions, white mold', 'treatment': 'Remove infected plants, apply copper fungicide'},
     'Corn_(maize)___Common_rust_': {'symptoms': 'Orange pustules on leaves', 'treatment': 'Plant resistant varieties, apply fungicide'},
-    # Add more as needed
 }
 
-CONFIDENCE_THRESHOLD = 40  # Below this = uncertain
+CONFIDENCE_THRESHOLD = 30
 
 @st.cache_resource
 def load_models():
@@ -150,10 +148,9 @@ def format_name(name):
 
 # ===== MAIN APP =====
 def main():
-    st.markdown('<h1 class="hero-title">PlantVision AI 🌿</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="hero-title">PlantVision AI</h1>', unsafe_allow_html=True)
     st.write("Precision Neural Ensemble Diagnosis System")
     
-    # Add info banner
     st.markdown("""
     <div class="info-card">
         <p style="margin: 0; font-size: 0.95rem;">
@@ -198,9 +195,7 @@ def main():
         
         if file:
             img = Image.open(file).convert('RGB')
-            st.image(img, use_column_width=True, caption="Uploaded Sample")
-            
-            # Image stats
+            st.image(img, use_container_width=True, caption="Uploaded Sample")
             st.caption(f"Image size: {img.size[0]}×{img.size[1]} pixels")
 
     with res_col:
@@ -210,9 +205,8 @@ def main():
                 proc_img = preprocess_image(img)
                 preds = (m_eff.predict(proc_img, verbose=0) + m_res.predict(proc_img, verbose=0)) / 2
                 idx = np.argmax(preds[0])
-                conf = preds[0][idx] * 100
+                conf = float(preds[0][idx] * 100)
                 
-                # THRESHOLD CHECK
                 if conf < CONFIDENCE_THRESHOLD:
                     st.markdown(f"""
                     <div class="warning-card">
@@ -229,7 +223,6 @@ def main():
                     for i in top3:
                         st.write(f"• {format_name(CLASS_NAMES[i])}: {preds[0][i]*100:.1f}%")
                 else:
-                    # CONFIDENT PREDICTION
                     color = "#43a047" if conf > 85 else "#fbc02d"
                     
                     st.markdown(f"""
@@ -241,22 +234,19 @@ def main():
                     </div>
                     """, unsafe_allow_html=True)
                     
-                    st.progress(conf / 100)
+                    st.progress(float(conf / 100))
                     
-                    # Disease info if available
                     if CLASS_NAMES[idx] in DISEASE_INFO:
                         with st.expander("📋 Disease Information"):
                             info = DISEASE_INFO[CLASS_NAMES[idx]]
                             st.write(f"**Symptoms:** {info['symptoms']}")
                             st.write(f"**Treatment:** {info['treatment']}")
                     
-                    # Probability distribution
                     with st.expander("📊 Full Probability Distribution"):
                         top5 = np.argsort(preds[0])[-5:][::-1]
                         for i in top5:
                             st.write(f"**{format_name(CLASS_NAMES[i])}**: {preds[0][i]*100:.1f}%")
                     
-                    # Comparison feature (UNIQUE)
                     with st.expander("🔍 Compare with EfficientNet vs ResNet"):
                         pred_eff = m_eff.predict(proc_img, verbose=0)
                         pred_res = m_res.predict(proc_img, verbose=0)
@@ -282,7 +272,6 @@ def main():
         else:
             st.info("🌱 System ready. Upload a leaf image to begin analysis.")
     
-    # Footer stats
     st.write("---")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
